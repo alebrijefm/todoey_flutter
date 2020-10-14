@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/widgets/tasks_list.dart';
+
+import 'add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: (context) => AddTaskScreen(),);
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.lightBlueAccent,
+      ),
       backgroundColor: Colors.lightBlueAccent,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(top: 60, bottom: 30, left: 30, right: 0),
+            padding: EdgeInsets.only(top: 60, bottom: 20, left: 20, right: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.white,
@@ -21,7 +32,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                   radius: 30,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 Text(
                   'Todoey',
                   style: TextStyle(
@@ -31,7 +42,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 tasks',
+                  '12 Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -41,15 +52,18 @@ class TasksScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
               ),
+              child: TasksList(),
             ),
-          )),
+          ),
         ],
       ),
     );
